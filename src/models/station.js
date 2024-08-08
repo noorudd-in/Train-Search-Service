@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Station.init({
-    name: {type: DataTypes.STRING, allowNull: false},
-    code: {type: DataTypes.STRING, allowNull: false}
+    name: {type: DataTypes.STRING, allowNull: false, unique: true},
+    code: {type: DataTypes.STRING, allowNull: false, unique: true}
   }, {
     sequelize,
     modelName: 'Station',

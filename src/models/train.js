@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Train.init({
-    name: {type: DataTypes.STRING, allowNull: false},
-    number: {type: DataTypes.INTEGER, allowNull: false},
+    name: {type: DataTypes.STRING, allowNull: false, unique: true},
+    number: {type: DataTypes.INTEGER, allowNull: false, unique: true},
     coaches: {type: DataTypes.INTEGER, allowNull: false}
   }, {
     sequelize,
