@@ -14,6 +14,6 @@ app.get('/', (req, res) => {
 
 app.use('/api', v1Routes)
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Server is up and running on the port ${PORT}`)
 })
