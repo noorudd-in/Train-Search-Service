@@ -1,18 +1,19 @@
 const { ScheduleService } = require("../services/index");
+const {success, client, server} = require('../utils/statusCodes');
 
 const scheduleService = new ScheduleService();
 
 const createSchedule = async (req, res) => {
   try {
     const schedule = await scheduleService.create(req.body);
-    return res.status(201).json({
+    return res.status(success.CREATED).json({
       data: schedule,
       success: true,
       message: "Schedule created successfully.",
       error: {},
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot create a schedule.",
@@ -25,21 +26,21 @@ const updateSchedule = async (req, res) => {
   try {
     const schedule = await scheduleService.update(req.params.id, req.body);
     if (!schedule) {
-      return res.status(404).json({
+      return res.status(client.NOT_FOUND).json({
         data: schedule,
         success: false,
         message: "Schedule you want to update, doesn't exist!",
         error: {},
       });
     }
-    return res.status(201).json({
+    return res.status(success.CREATED).json({
       data: schedule,
       success: true,
       message: "Schedule updated successfully.",
       error: {},
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot update a schedule.",
@@ -52,21 +53,21 @@ const deleteSchedule = async (req, res) => {
   try {
     const schedule = await scheduleService.delete(req.params.id);
     if (!schedule) {
-      return res.status(404).json({
+      return res.status(client.NOT_FOUND).json({
         data: null,
         success: false,
         message: "The schedule you want to delete doesn't exist!",
         error: {},
       });
     }
-    return res.status(201).json({
+    return res.status(success.CREATED).json({
       data: schedule,
       success: true,
       message: "Schedule deleted successfully.",
       error: {},
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot delete a schedule.",
@@ -79,21 +80,21 @@ const getSchedule = async (req, res) => {
   try {
     const schedule = await scheduleService.get(req.params.id);
     if (!schedule) {
-      return res.status(404).json({
+      return res.status(client.NOT_FOUND).json({
         data: schedule,
         success: false,
         message: "Schedule you specified doesn't exist!",
         error: {},
       });
     }
-    return res.status(200).json({
+    return res.status(success.OK).json({
       data: schedule,
       success: true,
       message: "Schedule fetched successfully.",
       error: {},
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot fetch a schedule.",
@@ -105,7 +106,7 @@ const getSchedule = async (req, res) => {
 const getAllSchedule = async (req, res) => {
   try {
       const schedule = await scheduleService.getAll();
-      return res.status(200).json({
+      return res.status(success.OK).json({
           data: schedule,
           success: true,
           message: "All schedule fetched successfully.",
@@ -113,7 +114,7 @@ const getAllSchedule = async (req, res) => {
       })
   } catch (error) {
       console.log(error);
-      return res.status(500).json({
+      return res.status(server.INTERNAL_SERVER_ERROR).json({
           data: null,
           success: false,
           message: "Cannot fetch schedule.",

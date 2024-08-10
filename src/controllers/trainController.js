@@ -1,18 +1,19 @@
 const { TrainService } = require("../services/index");
+const {success, client, server} = require('../utils/statusCodes')
 
 const trainService = new TrainService();
 
 const createTrain = async (req, res) => {
   try {
     const train = await trainService.create(req.body);
-    return res.status(201).json({
+    return res.status(success.CREATED).json({
       data: train,
       success: true,
       message: "Train created successfully.",
       error: {},
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot create a train.",
@@ -25,21 +26,21 @@ const updateTrain = async (req, res) => {
   try {
     const train = await trainService.update(req.params.id, req.body);
     if (!train) {
-      return res.status(404).json({
+      return res.status(client.NOT_FOUND).json({
         data: train,
         success: false,
         message: "Train you want to update, doesn't exist!",
         error: {},
       });
     }
-    return res.status(201).json({
+    return res.status(success.CREATED).json({
       data: train,
       success: true,
       message: "Train updated successfully.",
       error: {},
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot update a train.",
@@ -52,21 +53,21 @@ const deleteTrain = async (req, res) => {
   try {
     const train = await trainService.delete(req.params.id);
     if (!train) {
-      return res.status(404).json({
+      return res.status(client.NOT_FOUND).json({
         data: null,
         success: false,
         message: "The train you want to delete doesn't exist!",
         error: {},
       });
     }
-    return res.status(201).json({
+    return res.status(success.CREATED).json({
       data: train,
       success: true,
       message: "Train deleted successfully.",
       error: {},
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot delete a train.",
@@ -79,21 +80,21 @@ const getTrain = async (req, res) => {
   try {
     const train = await trainService.get(req.params.id);
     if (!train) {
-      return res.status(404).json({
+      return res.status(client.NOT_FOUND).json({
         data: train,
         success: false,
         message: "Train you specified doesn't exist!",
         error: {},
       });
     }
-    return res.status(200).json({
+    return res.status(success.OK).json({
       data: train,
       success: true,
       message: "Train fetched successfully.",
       error: {},
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot fetch a train.",
@@ -105,7 +106,7 @@ const getTrain = async (req, res) => {
 const getAllTrain = async (req, res) => {
   try {
       const train = await trainService.getAll();
-      return res.status(200).json({
+      return res.status(success.OK).json({
           data: train,
           success: true,
           message: "All trains fetched successfully.",
@@ -113,7 +114,7 @@ const getAllTrain = async (req, res) => {
       })
   } catch (error) {
       console.log(error);
-      return res.status(500).json({
+      return res.status(server.INTERNAL_SERVER_ERROR).json({
           data: null,
           success: false,
           message: "Cannot fetch trains.",
