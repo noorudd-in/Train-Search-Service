@@ -1,4 +1,5 @@
 module.exports = {
     StationRepository: require('./stationRepository'),
-    TrainRepository: require('./trainRepository')
+    TrainRepository: require('./trainRepository'),
+    CrudRepository: require('./crudRepository')
 }

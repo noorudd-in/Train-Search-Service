@@ -4,7 +4,7 @@ const trainService = new TrainService();
 
 const createTrain = async (req, res) => {
   try {
-    const train = await trainService.createTrain(req.body);
+    const train = await trainService.create(req.body);
     return res.status(201).json({
       data: train,
       success: true,
@@ -23,7 +23,7 @@ const createTrain = async (req, res) => {
 
 const updateTrain = async (req, res) => {
   try {
-    const train = await trainService.updateTrain(req.params.id, req.body);
+    const train = await trainService.update(req.params.id, req.body);
     if (!train) {
       return res.status(404).json({
         data: train,
@@ -50,12 +50,12 @@ const updateTrain = async (req, res) => {
 
 const deleteTrain = async (req, res) => {
   try {
-    const train = await trainService.deleteTrain(req.params.id);
+    const train = await trainService.delete(req.params.id);
     if (!train) {
       return res.status(404).json({
         data: null,
         success: false,
-        message: "The station you want to delete doesn't exist!",
+        message: "The train you want to delete doesn't exist!",
         error: {},
       });
     }
@@ -77,7 +77,7 @@ const deleteTrain = async (req, res) => {
 
 const getTrain = async (req, res) => {
   try {
-    const train = await trainService.getTrain(req.params.id);
+    const train = await trainService.get(req.params.id);
     if (!train) {
       return res.status(404).json({
         data: train,
@@ -101,9 +101,31 @@ const getTrain = async (req, res) => {
     });
   }
 };
+
+const getAllTrain = async (req, res) => {
+  try {
+      const train = await trainService.getAll();
+      return res.status(200).json({
+          data: train,
+          success: true,
+          message: "All trains fetched successfully.",
+          error: {}
+      })
+  } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+          data: null,
+          success: false,
+          message: "Cannot fetch trains.",
+          error: error
+      })
+  }
+};
+
 module.exports = {
   createTrain,
   updateTrain,
   deleteTrain,
   getTrain,
+  getAllTrain
 };

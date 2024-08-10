@@ -4,11 +4,11 @@ const stationService = new StationService()
 
 const createStation = async (req, res) => {
     try {
-        const station = await stationService.createStation(req.body);
+        const station = await stationService.create(req.body);
         return res.status(201).json({
             data: station,
             success: true,
-            message: "Station successfully created.",
+            message: "Station created successfully.",
             error: {}
         })
     } catch (error) {
@@ -24,7 +24,7 @@ const createStation = async (req, res) => {
 
 const updateStation = async (req, res) => {
     try {
-        const station = await stationService.updateStation(req.params.id, req.body);
+        const station = await stationService.update(req.params.id, req.body);
         if (!station) {
             return res.status(404).json({
                 data: station,
@@ -36,7 +36,7 @@ const updateStation = async (req, res) => {
         return res.status(201).json({
             data: station,
             success: true,
-            message: "Station successfully updated.",
+            message: "Station updated successfully.",
             error: {}
         })
     } catch (error) {
@@ -52,7 +52,7 @@ const updateStation = async (req, res) => {
 
 const deleteStation = async (req, res) => {
     try {
-        const station = await stationService.deleteStation(req.params.id);
+        const station = await stationService.delete(req.params.id);
         if (!station) {
             return res.status(404).json({
                 data: null,
@@ -64,7 +64,7 @@ const deleteStation = async (req, res) => {
         return res.status(200).json({
             data: station,
             success: true,
-            message: "Station successfully deleted.",
+            message: "Station deleted successfully.",
             error: {}
         })
     } catch (error) {
@@ -80,7 +80,7 @@ const deleteStation = async (req, res) => {
 
 const getStation = async (req, res) => {
     try {
-        const station = await stationService.getStation(req.params.id);
+        const station = await stationService.get(req.params.id);
         if (!station) {
             return res.status(400).json({
             data: station,
@@ -92,7 +92,7 @@ const getStation = async (req, res) => {
         return res.status(200).json({
             data: station,
             success: true,
-            message: "Station successfully fetched.",
+            message: "Station fetched successfully.",
             error: {}
         })
     } catch (error) {
@@ -108,11 +108,11 @@ const getStation = async (req, res) => {
 
 const getAllStation = async (req, res) => {
     try {
-        const station = await stationService.getAllStation();
+        const station = await stationService.getAll();
         return res.status(200).json({
             data: station,
             success: true,
-            message: "All stations successfully fected.",
+            message: "All stations fected successfully.",
             error: {}
         })
     } catch (error) {
