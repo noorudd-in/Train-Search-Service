@@ -31,11 +31,9 @@ module.exports = {
       },
       arrival: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       departure: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       stop: {
         type: Sequelize.INTEGER,

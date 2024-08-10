@@ -25,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
   Schedule.init({
     train_id: {type: DataTypes.INTEGER, allowNull: false},
     station_id: {type: DataTypes.INTEGER, allowNull: false},
-    arrival: {type: DataTypes.STRING, allowNull: false},
-    departure: {type: DataTypes.STRING, allowNull: false},
+    arrival: DataTypes.STRING,
+    departure: DataTypes.STRING,
     stop: {type: DataTypes.INTEGER, allowNull: false}
   }, {
     sequelize,
