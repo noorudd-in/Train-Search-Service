@@ -18,9 +18,20 @@ module.exports = {
         allowNull: false,
         unique: true
       },
-      coaches: {
+      SL: {
         type: Sequelize.INTEGER,
-        allowNull: false
+      },
+      '3E': {
+        type: Sequelize.INTEGER,
+      },
+      '3AC': {
+        type: Sequelize.INTEGER,
+      },
+      '2AC': {
+        type: Sequelize.INTEGER,
+      },
+      '1AC': {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

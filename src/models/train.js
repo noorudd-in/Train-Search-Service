@@ -19,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
   Train.init({
     name: {type: DataTypes.STRING, allowNull: false},
     number: {type: DataTypes.INTEGER, allowNull: false, unique: true},
-    coaches: {type: DataTypes.INTEGER, allowNull: false}
+    SL: DataTypes.INTEGER,
+    '3E': DataTypes.INTEGER,
+    '3AC': DataTypes.INTEGER,
+    '2AC': DataTypes.INTEGER,
+    '1AC': DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Train',
