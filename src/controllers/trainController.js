@@ -6,6 +6,14 @@ const trainService = new TrainService();
 const createTrain = async (req, res) => {
   try {
     const train = await trainService.create(req.body);
+    if (train.success == false) {
+      return res.status(server.INTERNAL_SERVER_ERROR).json({
+        data: null,
+        success: false,
+        message: train.message,
+        error: train.error,
+      });
+    }
     return res.status(success.CREATED).json({
       data: train,
       success: true,
@@ -13,7 +21,7 @@ const createTrain = async (req, res) => {
       error: null,
     });
   } catch (error) {
-    res.status(server.INTERNAL_SERVER_ERROR).json({
+    return res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot create a train.",
@@ -25,6 +33,14 @@ const createTrain = async (req, res) => {
 const updateTrain = async (req, res) => {
   try {
     const train = await trainService.update(req.params.id, req.body);
+    if (train[0] == 0) {
+      return res.status(server.INTERNAL_SERVER_ERROR).json({
+        data: null,
+        success: false,
+        message: "Train you want to update, doesn't exist!",
+        error: 'Train not found',
+      });
+    }
     if (!train) {
       return res.status(client.NOT_FOUND).json({
         data: train,

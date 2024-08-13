@@ -10,7 +10,12 @@ class CrudRepository {
     } catch (error) {
       console.log("Something went wrong in the repository layer");
       console.log(error);
-      return null;
+      return {
+        data: null,
+        message: error.errors[0].message,
+        success: false,
+        error: error.name
+      };
     }
   }
 
@@ -25,6 +30,12 @@ class CrudRepository {
     } catch (error) {
       console.log("Something went wrong in the repository layer");
       console.log(error);
+      return {
+        data: null,
+        message: error.errors[0].message,
+        success: false,
+        error: error.name
+      };
     }
   }
 
@@ -42,6 +53,12 @@ class CrudRepository {
     } catch (error) {
       console.log("Something went wrong in the repository layer");
       console.log(error);
+      return {
+        data: null,
+        message: error.errors[0].message,
+        success: false,
+        error: error.name
+      };
     }
   }
 
@@ -55,6 +72,12 @@ class CrudRepository {
     } catch (error) {
       console.log("Something went wrong in the repository layer");
       console.log(error);
+      return {
+        data: null,
+        message: error.errors[0].message,
+        success: false,
+        error: error.name
+      };
     }
   }
 
@@ -64,7 +87,12 @@ class CrudRepository {
       return result; 
     } catch (error) {
       console.log("Something went wrong in the repository layer");
-      throw { error };
+      return {
+        data: null,
+        message: error.errors[0].message,
+        success: false,
+        error: error.name
+      };
     }
   }
 }
