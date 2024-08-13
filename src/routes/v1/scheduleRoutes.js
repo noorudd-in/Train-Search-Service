@@ -8,9 +8,9 @@ const {
   getSchedule,
   getAllSchedule
 } = require("../../controllers/scheduleController");
-const { validateId } = require('../../middlewares/requestValidation')
+const { validateId, validateCreateSchedule } = require('../../middlewares/requestValidation')
 
-router.post('/schedule', createSchedule);
+router.post('/schedule', validateCreateSchedule, createSchedule);
 router.patch('/schedule/:id', validateId, updateSchedule);
 router.delete('/schedule/:id', validateId, deleteSchedule);
 router.get('/schedule/:id', validateId, getSchedule);

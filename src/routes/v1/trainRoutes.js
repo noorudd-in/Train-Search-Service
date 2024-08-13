@@ -8,9 +8,9 @@ const {
   getTrain,
   getAllTrain
 } = require("../../controllers/trainController");
-const { validateId } = require('../../middlewares/requestValidation')
+const { validateId, validateCreateTrain } = require('../../middlewares/requestValidation')
 
-router.post('/train', createTrain);
+router.post('/train', validateCreateTrain, createTrain);
 router.patch('/train/:id', validateId, updateTrain);
 router.delete('/train/:id', validateId, deleteTrain);
 router.get('/train/:id', validateId, getTrain);
