@@ -10,14 +10,14 @@ const createTrain = async (req, res) => {
       data: train,
       success: true,
       message: "Train created successfully.",
-      error: {},
+      error: null,
     });
   } catch (error) {
     res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot create a train.",
-      error: { error },
+      error: error,
     });
   }
 };
@@ -30,21 +30,21 @@ const updateTrain = async (req, res) => {
         data: train,
         success: false,
         message: "Train you want to update, doesn't exist!",
-        error: {},
+        error: 'Train not found',
       });
     }
     return res.status(success.CREATED).json({
       data: train,
       success: true,
       message: "Train updated successfully.",
-      error: {},
+      error: null,
     });
   } catch (error) {
     res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot update a train.",
-      error: { error },
+      error: error,
     });
   }
 };
@@ -57,21 +57,21 @@ const deleteTrain = async (req, res) => {
         data: null,
         success: false,
         message: "The train you want to delete doesn't exist!",
-        error: {},
+        error: "Train not found",
       });
     }
     return res.status(success.CREATED).json({
       data: train,
       success: true,
       message: "Train deleted successfully.",
-      error: {},
+      error: null,
     });
   } catch (error) {
     res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot delete a train.",
-      error: { error },
+      error: error,
     });
   }
 };
@@ -84,21 +84,21 @@ const getTrain = async (req, res) => {
         data: train,
         success: false,
         message: "Train you specified doesn't exist!",
-        error: {},
+        error: "Train not found",
       });
     }
     return res.status(success.OK).json({
       data: train,
       success: true,
       message: "Train fetched successfully.",
-      error: {},
+      error: null,
     });
   } catch (error) {
     res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot fetch a train.",
-      error: { error },
+      error: error,
     });
   }
 };
@@ -110,7 +110,7 @@ const getAllTrain = async (req, res) => {
           data: train,
           success: true,
           message: "All trains fetched successfully.",
-          error: {}
+          error: null
       })
   } catch (error) {
       console.log(error);

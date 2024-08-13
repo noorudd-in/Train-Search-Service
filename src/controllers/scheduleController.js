@@ -10,14 +10,14 @@ const createSchedule = async (req, res) => {
       data: schedule,
       success: true,
       message: "Schedule created successfully.",
-      error: {},
+      error: null,
     });
   } catch (error) {
     res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot create a schedule.",
-      error: { error },
+      error: error,
     });
   }
 };
@@ -30,21 +30,21 @@ const updateSchedule = async (req, res) => {
         data: schedule,
         success: false,
         message: "Schedule you want to update, doesn't exist!",
-        error: {},
+        error: 'Schedule not found',
       });
     }
     return res.status(success.CREATED).json({
       data: schedule,
       success: true,
       message: "Schedule updated successfully.",
-      error: {},
+      error: null,
     });
   } catch (error) {
     res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot update a schedule.",
-      error: { error },
+      error: error,
     });
   }
 };
@@ -57,21 +57,21 @@ const deleteSchedule = async (req, res) => {
         data: null,
         success: false,
         message: "The schedule you want to delete doesn't exist!",
-        error: {},
+        error: 'Schedule not found',
       });
     }
     return res.status(success.CREATED).json({
       data: schedule,
       success: true,
       message: "Schedule deleted successfully.",
-      error: {},
+      error: null,
     });
   } catch (error) {
     res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot delete a schedule.",
-      error: { error },
+      error: error,
     });
   }
 };
@@ -84,21 +84,21 @@ const getSchedule = async (req, res) => {
         data: schedule,
         success: false,
         message: "Schedule you specified doesn't exist!",
-        error: {},
+        error: 'Schedule not found',
       });
     }
     return res.status(success.OK).json({
       data: schedule,
       success: true,
       message: "Schedule fetched successfully.",
-      error: {},
+      error: null,
     });
   } catch (error) {
     res.status(server.INTERNAL_SERVER_ERROR).json({
       data: null,
       success: false,
       message: "Cannot fetch a schedule.",
-      error: { error },
+      error: error,
     });
   }
 };
@@ -110,7 +110,7 @@ const getAllSchedule = async (req, res) => {
           data: schedule,
           success: true,
           message: "All schedule fetched successfully.",
-          error: {}
+          error: null
       })
   } catch (error) {
       console.log(error);

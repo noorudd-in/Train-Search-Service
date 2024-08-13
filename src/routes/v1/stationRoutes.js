@@ -8,11 +8,12 @@ const {
   getStation,
   getAllStation,
 } = require("../../controllers/stationController");
+const { validateId } = require('../../middlewares/requestValidation')
 
 router.post('/station', createStation);
-router.patch('/station/:id', updateStation);
-router.delete('/station/:id', deleteStation);
-router.get('/station/:id', getStation);
+router.patch('/station/:id', validateId, updateStation);
+router.delete('/station/:id', validateId, deleteStation);
+router.get('/station/:id', validateId, getStation);
 router.get('/stations', getAllStation);
 
 module.exports = router;

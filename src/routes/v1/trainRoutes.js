@@ -8,11 +8,12 @@ const {
   getTrain,
   getAllTrain
 } = require("../../controllers/trainController");
+const { validateId } = require('../../middlewares/requestValidation')
 
 router.post('/train', createTrain);
-router.patch('/train/:id', updateTrain);
-router.delete('/train/:id', deleteTrain);
-router.get('/train/:id', getTrain);
+router.patch('/train/:id', validateId, updateTrain);
+router.delete('/train/:id', validateId, deleteTrain);
+router.get('/train/:id', validateId, getTrain);
 router.get('/trains', getAllTrain);
 
 module.exports = router;

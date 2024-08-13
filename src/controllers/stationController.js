@@ -10,7 +10,7 @@ const createStation = async (req, res) => {
             data: station,
             success: true,
             message: "Station created successfully.",
-            error: {}
+            error: null
         })
     } catch (error) {
         console.log(error);
@@ -31,14 +31,14 @@ const updateStation = async (req, res) => {
                 data: station,
                 success: false,
                 message: "The station you want to update doesn't exist!",
-                error: {}
+                error: 'Station not found'
             })
         }
         return res.status(success.CREATED).json({
             data: station,
             success: true,
             message: "Station updated successfully.",
-            error: {}
+            error: null
         })
     } catch (error) {
         console.log(error);
@@ -59,14 +59,14 @@ const deleteStation = async (req, res) => {
                 data: null,
                 success: false,
                 message: "The station you want to delete doesn't exist!",
-                error: {}
+                error: 'Station not found'
             })
         }
         return res.status(success.CREATED).json({
             data: station,
             success: true,
             message: "Station deleted successfully.",
-            error: {}
+            error: null
         })
     } catch (error) {
         console.log(error);
@@ -87,14 +87,14 @@ const getStation = async (req, res) => {
             data: station,
             success: false,
             message: "Cannot find the specified station.",
-            error: {}
+            error: 'Station not found'
             })
         }
         return res.status(success.CREATED).json({
             data: station,
             success: true,
             message: "Station fetched successfully.",
-            error: {}
+            error: null
         })
     } catch (error) {
         console.log(error);
@@ -114,7 +114,7 @@ const getAllStation = async (req, res) => {
             data: station,
             success: true,
             message: "All stations fected successfully.",
-            error: {}
+            error: null
         })
     } catch (error) {
         console.log(error);
