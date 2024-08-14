@@ -9,10 +9,11 @@ const {
   getAllStation,
 } = require("../../controllers/stationController");
 const { validateId, validateCreateStation } = require('../../middlewares/requestValidation')
+const { isAdmin } = require('../../middlewares/authValidation')
 
-router.post('/station', validateCreateStation, createStation);
-router.patch('/station/:id', validateId, updateStation);
-router.delete('/station/:id', validateId, deleteStation);
+router.post('/station', validateCreateStation, isAdmin, createStation);
+router.patch('/station/:id', validateId, isAdmin, updateStation);
+router.delete('/station/:id', validateId, isAdmin, deleteStation);
 router.get('/station/:id', validateId, getStation);
 router.get('/stations', getAllStation);
 

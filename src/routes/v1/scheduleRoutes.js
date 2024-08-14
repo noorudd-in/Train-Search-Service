@@ -9,12 +9,12 @@ const {
   getAllSchedule
 } = require("../../controllers/scheduleController");
 const { validateId, validateCreateSchedule } = require('../../middlewares/requestValidation');
-const { isLoggedIn } = require('../../middlewares/authValidation');
+const { isLoggedIn, isAdmin } = require('../../middlewares/authValidation');
 
-router.post('/schedule', validateCreateSchedule, createSchedule);
-router.patch('/schedule/:id', validateId, updateSchedule);
-router.delete('/schedule/:id', validateId, deleteSchedule);
+router.post('/schedule', validateCreateSchedule, isAdmin, createSchedule);
+router.patch('/schedule/:id', validateId, isAdmin, updateSchedule);
+router.delete('/schedule/:id', validateId, isAdmin, deleteSchedule);
 router.get('/schedule/:id', validateId, isLoggedIn, getSchedule);
-router.get('/schedules', getAllSchedule);
+router.get('/schedules', isAdmin, getAllSchedule);
 
 module.exports = router;

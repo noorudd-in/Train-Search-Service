@@ -38,5 +38,5 @@ app.listen(PORT, async () => {
     const results = await sequelize.query(rawQuery, {type: QueryTypes.SELECT})
     console.log(results)
     */
-    console.log(`Server is up and running on the port ${PORT}`)
+    console.log(`Search Service is up and running at port ${PORT}`)
 })

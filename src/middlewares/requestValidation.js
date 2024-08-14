@@ -85,7 +85,7 @@ const validateCreateSchedule = (req, res, next) => {
             error: "Invalid request"
         })
     }
-    if (req.body.arrival.length != 5) {
+    if (req.body.arrival && req.body.arrival.length != 5) {
         return res.status(client.BAD_REQUEST).json({
             data: null,
             message: "Arrival time format is incorrect. It should be in the format of 'XX:XX' following 24 hour clock. Eg: 18:05 or 04:15.",
@@ -93,7 +93,7 @@ const validateCreateSchedule = (req, res, next) => {
             error: "Invalid request"
         })
     }
-    if (req.body.departure.length != 5) {
+    if (req.body.departure && req.body.departure.length != 5) {
         return res.status(client.BAD_REQUEST).json({
             data: null,
             message: "Departure time format is incorrect. It should be in the format of 'XX:XX' following 24 hour clock. Eg: 18:05 or 04:15.",
