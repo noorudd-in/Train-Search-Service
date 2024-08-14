@@ -6,6 +6,14 @@ const scheduleService = new ScheduleService();
 const createSchedule = async (req, res) => {
   try {
     const schedule = await scheduleService.create(req.body);
+    if (schedule.success == false) {
+      return res.status(server.INTERNAL_SERVER_ERROR).json({
+        data: null,
+        success: false,
+        message: schedule.message,
+        error: schedule.error,
+      });
+    }
     return res.status(success.CREATED).json({
       data: schedule,
       success: true,
@@ -25,7 +33,7 @@ const createSchedule = async (req, res) => {
 const updateSchedule = async (req, res) => {
   try {
     const schedule = await scheduleService.update(req.params.id, req.body);
-    if (!schedule) {
+    if (!schedule || schedule[0] == 0) {
       return res.status(client.NOT_FOUND).json({
         data: schedule,
         success: false,

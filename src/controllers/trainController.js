@@ -33,17 +33,9 @@ const createTrain = async (req, res) => {
 const updateTrain = async (req, res) => {
   try {
     const train = await trainService.update(req.params.id, req.body);
-    if (train[0] == 0) {
+    if (train[0] == 0 || !train) {
       return res.status(server.INTERNAL_SERVER_ERROR).json({
         data: null,
-        success: false,
-        message: "Train you want to update, doesn't exist!",
-        error: 'Train not found',
-      });
-    }
-    if (!train) {
-      return res.status(client.NOT_FOUND).json({
-        data: train,
         success: false,
         message: "Train you want to update, doesn't exist!",
         error: 'Train not found',

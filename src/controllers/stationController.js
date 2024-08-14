@@ -34,15 +34,7 @@ const createStation = async (req, res) => {
 const updateStation = async (req, res) => {
   try {
     const station = await stationService.update(req.params.id, req.body);
-    if (station[0] == 0) {
-        return res.status(server.INTERNAL_SERVER_ERROR).json({
-          data: null,
-          success: false,
-          message: "Station you want to update, doesn't exist!",
-          error: 'Station not found',
-        });
-      }
-    if (!station) {
+    if (!station || station[0] == 0) {
       return res.status(client.NOT_FOUND).json({
         data: station,
         success: false,
