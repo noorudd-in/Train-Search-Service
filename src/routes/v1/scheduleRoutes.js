@@ -6,15 +6,19 @@ const {
   updateSchedule,
   deleteSchedule,
   getSchedule,
-  getAllSchedule
+  getAllSchedule,
+  searchTrain
 } = require("../../controllers/scheduleController");
-const { validateId, validateCreateSchedule } = require('../../middlewares/requestValidation');
-const { isLoggedIn, isAdmin } = require('../../middlewares/authValidation');
+const { validateId, validateCreateSchedule, isLoggedIn, isAdmin, validateTrainSearch } = require('../../middlewares/index');
 
 router.post('/schedule', validateCreateSchedule, isAdmin, createSchedule);
 router.patch('/schedule/:id', validateId, isAdmin, updateSchedule);
 router.delete('/schedule/:id', validateId, isAdmin, deleteSchedule);
-router.get('/schedule/:id', validateId, isLoggedIn, getSchedule);
 router.get('/schedules', isAdmin, getAllSchedule);
+
+// Routes available to users
+router.get('/search', validateTrainSearch, searchTrain)
+// Get details of their journey/schedule
+router.get('/schedule/:id', validateId, isLoggedIn, getSchedule);
 
 module.exports = router;

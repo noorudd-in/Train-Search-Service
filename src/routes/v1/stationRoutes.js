@@ -8,8 +8,7 @@ const {
   getStation,
   getAllStation,
 } = require("../../controllers/stationController");
-const { validateId, validateCreateStation } = require('../../middlewares/requestValidation')
-const { isAdmin } = require('../../middlewares/authValidation')
+const { validateId, validateCreateStation, isAdmin } = require('../../middlewares/index')
 
 router.post('/station', validateCreateStation, isAdmin, createStation);
 router.patch('/station/:id', validateId, isAdmin, updateStation);

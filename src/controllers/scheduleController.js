@@ -1,5 +1,5 @@
 const { ScheduleService } = require("../services/index");
-const {success, client, server} = require('../utils/statusCodes');
+const { success, client, server } = require("../utils/statusCodes");
 
 const scheduleService = new ScheduleService();
 
@@ -38,7 +38,7 @@ const updateSchedule = async (req, res) => {
         data: schedule,
         success: false,
         message: "Schedule you want to update, doesn't exist!",
-        error: 'Schedule not found',
+        error: "Schedule not found",
       });
     }
     return res.status(success.CREATED).json({
@@ -65,7 +65,7 @@ const deleteSchedule = async (req, res) => {
         data: null,
         success: false,
         message: "The schedule you want to delete doesn't exist!",
-        error: 'Schedule not found',
+        error: "Schedule not found",
       });
     }
     return res.status(success.CREATED).json({
@@ -92,7 +92,7 @@ const getSchedule = async (req, res) => {
         data: schedule,
         success: false,
         message: "Schedule you specified doesn't exist!",
-        error: 'Schedule not found',
+        error: "Schedule not found",
       });
     }
     return res.status(success.OK).json({
@@ -113,21 +113,49 @@ const getSchedule = async (req, res) => {
 
 const getAllSchedule = async (req, res) => {
   try {
-      const schedule = await scheduleService.getAll();
-      return res.status(success.OK).json({
-          data: schedule,
-          success: true,
-          message: "All schedule fetched successfully.",
-          error: null
-      })
+    const schedule = await scheduleService.getAll();
+    return res.status(success.OK).json({
+      data: schedule,
+      success: true,
+      message: "All schedule fetched successfully.",
+      error: null,
+    });
   } catch (error) {
-      console.log(error);
+    console.log(error);
+    return res.status(server.INTERNAL_SERVER_ERROR).json({
+      data: null,
+      success: false,
+      message: "Cannot fetch schedule.",
+      error: error,
+    });
+  }
+};
+
+const searchTrain = async (req, res) => {
+  try {
+    const result = await scheduleService.searchTrain(req.body);
+    if (result.length < 1) {
       return res.status(server.INTERNAL_SERVER_ERROR).json({
-          data: null,
-          success: false,
-          message: "Cannot fetch schedule.",
-          error: error
-      })
+        data: null,
+        success: false,
+        message: "No direct trains are available.",
+        error: "Invalid request",
+      });
+    }
+    return res.status(success.OK).json({
+      data: result,
+      success: true,
+      message: "All possible routes fetched.",
+      error: null,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(server.INTERNAL_SERVER_ERROR).json({
+      data: null,
+      success: false,
+      message: "Cannot find the route.",
+      error: error,
+    });
   }
 };
 
@@ -136,5 +164,6 @@ module.exports = {
   updateSchedule,
   deleteSchedule,
   getSchedule,
-  getAllSchedule
+  getAllSchedule,
+  searchTrain,
 };

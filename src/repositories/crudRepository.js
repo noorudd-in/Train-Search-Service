@@ -12,7 +12,7 @@ class CrudRepository {
       console.log(error);
       return {
         data: null,
-        message: error.errors[0].message,
+        message: error.message,
         success: false,
         error: error.name
       };
@@ -32,7 +32,7 @@ class CrudRepository {
       console.log(error);
       return {
         data: null,
-        message: error.errors[0].message,
+        message: error.message,
         success: false,
         error: error.name
       };
@@ -55,7 +55,7 @@ class CrudRepository {
       console.log(error);
       return {
         data: null,
-        message: error.errors[0].message,
+        message: error.message,
         success: false,
         error: error.name
       };
@@ -74,7 +74,7 @@ class CrudRepository {
       console.log(error);
       return {
         data: null,
-        message: error.errors[0].message,
+        message: error.message,
         success: false,
         error: error.name
       };
@@ -89,7 +89,7 @@ class CrudRepository {
       console.log("Something went wrong in the repository layer");
       return {
         data: null,
-        message: error.errors[0].message,
+        message: error.message,
         success: false,
         error: error.name
       };
