@@ -24,13 +24,13 @@ module.exports = {
       '3E': {
         type: Sequelize.INTEGER,
       },
-      '3AC': {
+      '3A': {
         type: Sequelize.INTEGER,
       },
-      '2AC': {
+      '2A': {
         type: Sequelize.INTEGER,
       },
-      '1AC': {
+      '1A': {
         type: Sequelize.INTEGER,
       },
       createdAt: {

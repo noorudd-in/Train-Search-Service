@@ -16,11 +16,11 @@ class ScheduleRepository extends CrudRepository {
       st2.name as to_station_name,
       t.number as train_number,
       t.name as train_name,
-      t.sl as sleeper,
-      t.\`3e\` as 3_economy,
-      t.\`3ac\` as 3rd_ac,
-      t.\`2ac\` as 2nd_ac,
-      t.\`1ac\` as 1st_ac
+      t.sl as SL,
+      t.\`3e\` as 3E,
+      t.\`3a\` as 3A,
+      t.\`2a\` as 2A,
+      t.\`1a\` as 1A
     FROM schedules s1
     JOIN schedules s2 ON s1.train_id = s2.train_id
     JOIN stations st1 ON st1.id = s1.station_id

@@ -21,9 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     number: {type: DataTypes.INTEGER, allowNull: false, unique: true},
     SL: DataTypes.INTEGER,
     '3E': DataTypes.INTEGER,
-    '3AC': DataTypes.INTEGER,
-    '2AC': DataTypes.INTEGER,
-    '1AC': DataTypes.INTEGER,
+    '3A': DataTypes.INTEGER,
+    '2A': DataTypes.INTEGER,
+    '1A': DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Train',
