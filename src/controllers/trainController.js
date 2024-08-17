@@ -1,5 +1,5 @@
 const { TrainService } = require("../services/index");
-const {success, client, server} = require('../utils/statusCodes')
+const { success, client, server } = require("../utils/statusCodes");
 
 const trainService = new TrainService();
 
@@ -38,7 +38,7 @@ const updateTrain = async (req, res) => {
         data: null,
         success: false,
         message: "Train you want to update, doesn't exist!",
-        error: 'Train not found',
+        error: "Train not found",
       });
     }
     return res.status(success.CREATED).json({
@@ -113,21 +113,57 @@ const getTrain = async (req, res) => {
 
 const getAllTrain = async (req, res) => {
   try {
-      const train = await trainService.getAll();
-      return res.status(success.OK).json({
-          data: train,
-          success: true,
-          message: "All trains fetched successfully.",
-          error: null
-      })
+    const train = await trainService.getAll();
+    return res.status(success.OK).json({
+      data: train,
+      success: true,
+      message: "All trains fetched successfully.",
+      error: null,
+    });
   } catch (error) {
-      console.log(error);
-      return res.status(server.INTERNAL_SERVER_ERROR).json({
-          data: null,
-          success: false,
-          message: "Cannot fetch trains.",
-          error: error
-      })
+    console.log(error);
+    return res.status(server.INTERNAL_SERVER_ERROR).json({
+      data: null,
+      success: false,
+      message: "Cannot fetch trains.",
+      error: error,
+    });
+  }
+};
+
+const getTrainSeat = async (req, res) => {
+  try {
+    const train = await trainService.getByNumber(req.params.number);
+    if (!train) {
+      return res.status(client.NOT_FOUND).json({
+        data: train,
+        success: false,
+        message: "Train you specified doesn't exist!",
+        error: "Train not found",
+      });
+    }
+    return res.status(success.OK).json({
+      data: {
+        id: train.id,
+        name: train.name,
+        number: 22731,
+        SL: train.sl,
+        "3E": train['3E'],
+        "3AC": train['3AC'],
+        "2AC": train['2AC'],
+        "1AC": train['1AC'],
+      },
+      success: true,
+      message: "Train fetched successfully.",
+      error: null,
+    });
+  } catch (error) {
+    res.status(server.INTERNAL_SERVER_ERROR).json({
+      data: null,
+      success: false,
+      message: "Cannot fetch a train.",
+      error: error,
+    });
   }
 };
 
@@ -136,5 +172,6 @@ module.exports = {
   updateTrain,
   deleteTrain,
   getTrain,
-  getAllTrain
+  getAllTrain,
+  getTrainSeat,
 };

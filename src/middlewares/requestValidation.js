@@ -12,6 +12,18 @@ const validateId = (req, res, next) => {
   next();
 };
 
+const validateTrainNumber = (req, res, next) => {
+  if (!req.params.number) {
+    return res.status(client.BAD_REQUEST).json({
+      data: null,
+      message: "Train number is required",
+      success: false,
+      error: "Invalid request",
+    });
+  }
+  next();
+};
+
 const validateCreateTrain = (req, res, next) => {
   if (!req.body.name) {
     return res.status(client.BAD_REQUEST).json({
@@ -128,6 +140,7 @@ const validateTrainSearch = (req, res, next) => {
 
 module.exports = {
   validateId,
+  validateTrainNumber,
   validateCreateTrain,
   validateCreateStation,
   validateCreateSchedule,
