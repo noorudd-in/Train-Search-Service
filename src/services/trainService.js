@@ -17,5 +17,15 @@ class TrainService extends CrudService {
       throw { error };
     }
   }
+
+  async updateSeat(data) {
+    try {
+      const result = this.repository.updateSeat(data);
+      return result;
+    } catch (error) {
+      console.log("Something went wrong at service layer");
+      throw { error };
+    }
+  }
 }
 module.exports = TrainService;

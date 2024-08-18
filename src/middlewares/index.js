@@ -4,7 +4,8 @@ const {
   validateCreateTrain,
   validateId,
   validateTrainSearch,
-  validateTrainNumber
+  validateTrainNumber,
+  validateSeatUpdate
 } = require("./requestValidation");
 const { isLoggedIn, isAdmin } = require("./authValidation");
 
@@ -17,4 +18,5 @@ module.exports = {
   validateTrainSearch,
   isLoggedIn,
   isAdmin,
+  validateSeatUpdate
 };

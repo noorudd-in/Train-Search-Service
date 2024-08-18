@@ -135,7 +135,45 @@ const validateTrainSearch = (req, res, next) => {
       error: "Invalid request",
     });
   }
-  next()
+  next();
+};
+
+const validateSeatUpdate = (req, res, next) => {
+  if (!req.params.number) {
+    return res.status(client.BAD_REQUEST).json({
+      data: null,
+      message: "Train number is required.",
+      success: false,
+      error: "Invalid request",
+    });
+  }
+  if (!req.body.type) {
+    return res.status(client.BAD_REQUEST).json({
+      data: null,
+      message: "Seat type is required.",
+      success: false,
+      error: "Invalid request",
+    });
+  }
+  if (!["SL", "3E", "1A", "2A", "3A"].includes(req.body.type)) {
+    return res.status(client.BAD_REQUEST).json({
+      data: null,
+      message:
+        "Inavlid inputs. Allowed values are 'SL', '3E', '1A', '2A' or '3A'",
+      success: false,
+      error: "Invalid request",
+    });
+  }
+  if (!req.body.new_seats) {
+    return res.status(client.BAD_REQUEST).json({
+      data: null,
+      message: "Updated seat count is required.",
+      success: false,
+      error: "Invalid request",
+    });
+  }
+
+  next();
 };
 
 module.exports = {
@@ -144,5 +182,6 @@ module.exports = {
   validateCreateTrain,
   validateCreateStation,
   validateCreateSchedule,
-  validateTrainSearch
+  validateTrainSearch,
+  validateSeatUpdate,
 };

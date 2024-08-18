@@ -10,8 +10,8 @@ class TrainRepository extends CrudRepository {
     try {
       const result = Train.findOne({
         where: {
-          number: number
-        }
+          number: number,
+        },
       });
       if (!result) {
         return null;
@@ -24,7 +24,32 @@ class TrainRepository extends CrudRepository {
         data: null,
         message: error.message,
         success: false,
-        error: error.name
+        error: error.name,
+      };
+    }
+  }
+
+  async updateSeat(data) {
+    try {
+      const train = Train.update(
+        {
+          [data.type]: data.new_seats,
+        },
+        {
+          where: {
+            number: data.number,
+          },
+        }
+      );
+      return train;
+    } catch (error) {
+      console.log("Something went wrong in the repository layer");
+      console.log(error);
+      return {
+        data: null,
+        message: error.message,
+        success: false,
+        error: error.name,
       };
     }
   }

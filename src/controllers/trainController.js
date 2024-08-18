@@ -170,6 +170,39 @@ const getTrainSeat = async (req, res) => {
   }
 };
 
+const updateSeat = async (req, res) => {
+  try {
+    const train = await trainService.updateSeat({
+      number: req.params.number,
+      type: req.body.type,
+      new_seats: req.body.new_seats
+    });
+
+    if (train[0] == 0) {
+      return res.status(server.INTERNAL_SERVER_ERROR).json({
+        data: null,
+        success: false,
+        message: "Cannot update seats. Make sure your passing correct seat type and seat count.",
+        error: 'Invalid request',
+      });
+    }
+    return res.status(success.OK).json({
+      data: train,
+      success: true,
+      message: "Seat updates successfully.",
+      error: null,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(server.INTERNAL_SERVER_ERROR).json({
+      data: null,
+      success: false,
+      message: "Cannot update seats.",
+      error: error,
+    });
+  }
+}
+
 module.exports = {
   createTrain,
   updateTrain,
@@ -177,4 +210,5 @@ module.exports = {
   getTrain,
   getAllTrain,
   getTrainSeat,
+  updateSeat
 };
