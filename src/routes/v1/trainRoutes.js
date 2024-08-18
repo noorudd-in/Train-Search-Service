@@ -14,7 +14,7 @@ const { validateId, validateCreateTrain, isAdmin, isLoggedIn, validateTrainNumbe
 router.post('/train', validateCreateTrain, isAdmin, createTrain);
 router.patch('/train/:id', validateId, isAdmin, updateTrain);
 router.delete('/train/:id', validateId, isAdmin, deleteTrain);
-router.get('/seats/:number', isLoggedIn, validateTrainNumber, getTrainSeat)
+router.post('/seats/:number', isLoggedIn, validateTrainNumber, getTrainSeat)
 router.get('/train/:id', validateId, getTrain);
 router.get('/trains', getAllTrain);
 

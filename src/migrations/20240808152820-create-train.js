@@ -33,6 +33,21 @@ module.exports = {
       '1A': {
         type: Sequelize.INTEGER,
       },
+      ladies: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 6
+      },
+      senior_citizen: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 6
+      },
+      tatkal: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 6
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
