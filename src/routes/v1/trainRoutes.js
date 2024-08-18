@@ -19,6 +19,6 @@ router.post('/seats/:number', isLoggedIn, validateTrainNumber, getTrainSeat)
 router.get('/train/:id', validateId, getTrain);
 router.get('/trains', getAllTrain);
 // Update seats of a train (after ticket is booked).
-router.post('/train/:number', validateSeatUpdate, updateSeat)
+router.post('/train/:number', validateSeatUpdate, isLoggedIn, updateSeat)
 
 module.exports = router;
