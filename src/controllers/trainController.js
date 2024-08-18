@@ -152,6 +152,9 @@ const getTrainSeat = async (req, res) => {
         "3A": train['3A'],
         "2A": train['2A'],
         "1A": train['1A'],
+        ladies: train.ladies,
+        senior_citizen: train['senior_citizen'],
+        tatkal: train.tatkal
       },
       success: true,
       message: "Train fetched successfully.",

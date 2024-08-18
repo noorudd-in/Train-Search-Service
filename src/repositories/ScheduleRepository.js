@@ -20,7 +20,10 @@ class ScheduleRepository extends CrudRepository {
       t.\`3e\` as 3E,
       t.\`3a\` as 3A,
       t.\`2a\` as 2A,
-      t.\`1a\` as 1A
+      t.\`1a\` as 1A,
+      t.ladies as ladies,
+      t.senior_citizen as senior_citizen,
+      t.tatkal as tatkal
     FROM schedules s1
     JOIN schedules s2 ON s1.train_id = s2.train_id
     JOIN stations st1 ON st1.id = s1.station_id
