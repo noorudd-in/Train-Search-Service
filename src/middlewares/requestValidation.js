@@ -155,11 +155,11 @@ const validateSeatUpdate = (req, res, next) => {
       error: "Invalid request",
     });
   }
-  if (!["SL", "3E", "1A", "2A", "3A"].includes(req.body.type)) {
+  if (!["SL", "3E", "1A", "2A", "3A", 'ladies', 'senior_citizen', 'tatkal'].includes(req.body.type)) {
     return res.status(client.BAD_REQUEST).json({
       data: null,
       message:
-        "Inavlid inputs. Allowed values are 'SL', '3E', '1A', '2A' or '3A'",
+        "Inavlid inputs. Allowed values are 'SL', '3E', '1A', '2A', '3A', 'ladies', 'senior_citizen' or 'tatkal'",
       success: false,
       error: "Invalid request",
     });
