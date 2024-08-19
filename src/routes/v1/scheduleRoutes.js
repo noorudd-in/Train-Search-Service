@@ -19,6 +19,6 @@ router.get('/schedules', isAdmin, getAllSchedule);
 // Routes available to users
 router.get('/search', validateTrainSearch, searchTrain)
 // Get details of their journey/schedule
-router.get('/schedule/:id', validateId, isLoggedIn, getSchedule);
+router.post('/schedule/:id', validateId, isLoggedIn, getSchedule);
 
 module.exports = router;
