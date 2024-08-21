@@ -48,6 +48,10 @@ module.exports = {
         allowNull: false,
         defaultValue: 6
       },
+      cost: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

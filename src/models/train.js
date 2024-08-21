@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 6,
       },
       tatkal: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 10 },
+      cost: { type: DataTypes.INTEGER, allowNull: false }
     },
     {
       sequelize,
