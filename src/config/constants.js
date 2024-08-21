@@ -2,5 +2,5 @@ require('dotenv').config()
 
 module.exports = {
     PORT: process.env.PORT,
-    AUTH_SERVICE_URL: 'http://localhost:1441/api/v1'
+    AUTH_SERVICE_URL: process.env.AUTH_SERVICE_URL
 }

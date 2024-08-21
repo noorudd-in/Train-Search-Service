@@ -26,17 +26,12 @@ AND s1.stop < s2.stop;`
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the server!')
+app.get('/ping', (req, res) => {
+    res.status(200).json({name: 'Search Service', status: 'up'})
 })
 
-app.use('/api', v1Routes)
+app.use('/search/api', v1Routes)
 
 app.listen(PORT, async () => {
-    
-    /*
-    const results = await sequelize.query(rawQuery, {type: QueryTypes.SELECT})
-    console.log(results)
-    */
     console.log(`Search Service is up and running at port ${PORT}`)
 })
