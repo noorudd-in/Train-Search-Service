@@ -119,7 +119,7 @@ const validateCreateSchedule = (req, res, next) => {
 };
 
 const validateTrainSearch = (req, res, next) => {
-  if (!req.body.from) {
+  if (!req.query.from) {
     return res.status(client.BAD_REQUEST).json({
       data: null,
       message: "Source station name is required.",
@@ -127,7 +127,7 @@ const validateTrainSearch = (req, res, next) => {
       error: "Invalid request",
     });
   }
-  if (!req.body.to) {
+  if (!req.query.to) {
     return res.status(client.BAD_REQUEST).json({
       data: null,
       message: "Destination station name is required.",

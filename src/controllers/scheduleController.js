@@ -133,7 +133,7 @@ const getAllSchedule = async (req, res) => {
 
 const searchTrain = async (req, res) => {
   try {
-    const result = await scheduleService.searchTrain(req.body);
+    const result = await scheduleService.searchTrain(req.query);
     if (result.length < 1) {
       return res.status(server.INTERNAL_SERVER_ERROR).json({
         data: null,
